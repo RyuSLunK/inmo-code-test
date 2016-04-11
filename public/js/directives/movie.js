@@ -99,12 +99,22 @@ angular.module('movies', ['ui.bootstrap'])
                 $scope.replace = true;
                 $scope.newmovie = isNew;
               }
+
               $scope.validator = function(){
-                return ($scope.newmovie.title.length > 0)?true:false;
+                $scope.errors = [];
+                if($scope.newmovie.title.length <= 0){
+                  $scope.errors.push("Please provide a title.");
+                }
+                if(parseInt($scope.newmovie.year) < 0 || parseInt($scope.newmovie.year) > new Date().getFullYear()){
+                  $scope.errors.push("Please enter a year of at least 0 but less than or equal to " + new Date().getFullYear() + ".");
+                }
+                if($scope.newmovie.rating < 0 || $scope.newmovie.rating > 10){
+                  $scope.errors.push("Please enter a rating of at least 0 but less than or equal to 10.");
+                }
+                return ($scope.errors.length == 0)?true:false;
               };
               $scope.ok = function() {
                 if($scope.validator()){
-                console.log("OKAY");
                 modalInstance.close({
                   msg: "OK",
                   movie: $scope.newmovie
@@ -120,19 +130,19 @@ angular.module('movies', ['ui.bootstrap'])
           });
           modalInstance.result.then(function(res) {
             if (res.msg === "OK") {
-              console.log(res.movie);
               if (typeof res.movie.$index === "number") {
-                console.log("EXISTING MOVIE")
                 var movie = $scope.movies[res.movie.$index];
                 movie.title = res.movie.title;
-                movie.year = res.movie.year;
+                movie.year = parseInt(res.movie.year);
                 movie.rating = res.movie.rating;
-                movie.actors = res.movie.actors.split(',');
-                movie.genres = res.movie.genres.split(',');
+                movie.actors = _.uniq(res.movie.actors.split(','));
+                movie.genres = _.uniq(res.movie.genres.split(','));
               } else {
-                res.movie.actors = res.movie.actors.split(',');
-                res.movie.genres = res.movie.genres.split(',');
+                res.movie.actors = _.uniq(res.movie.actors.split(','));
+                res.movie.genres = _.uniq(res.movie.genres.split(','));
+                res.movie.year = parseInt(res.movie.year);
                 $scope.movies.push(res.movie);
+
               }
             }
           });

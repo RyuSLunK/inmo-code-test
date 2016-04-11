@@ -7,9 +7,12 @@
   <div>
     <div ng-click="editmovie(this)" class="crud">Edit <span class="glyphicon glyphicon-pencil"></span></div>
     <div ng-click="destroymovie(this)" class="crud delete">Delete <span class="glyphicon glyphicon-trash"></span></div>
+  </div>
   <h1>{{movie.title}}</h1>
-<p class="year">{{movie.year}}</p>
-<p class="rating">{{movie.rating}} / 10</p>
+  <div class="details">
+    <p class="year"><i>{{movie.year}}</i></p>
+    <p class="rating">{{movie.rating}} / 10</p>
+</div>
 <ul class="actors" ng-if="movie.actors.length > 0"><b>Actors</b><li ng-repeat="actor in movie.actors">{{actor}}</li></ul>
 
 <ul class="genres" ng-if="movie.genres.length > 0"><b>Genre</b><li ng-repeat="genre in movie.genres">{{genre}}</li></ul>

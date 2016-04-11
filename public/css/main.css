@@ -36,3 +36,7 @@ header{
 .modal-body label{
   display:block;
 }
+.details > p {display: inline-block;margin-right: 5em;}
+.modal-errors{
+  color: red;
+}

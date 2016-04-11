@@ -1,13 +1,18 @@
 <div class="modal-header">
             <h3 class="modal-title">Add a Movie</h3>
         </div>
+        <div ng-if="errors.length > 0" class="modal-errors">
+          <ul>
+            <li ng-repeat="error in errors">{{error}}</li>
+          </ul>
+        </div>
         <div class="modal-body">
             <label>Title: <input ng-model="newmovie.title" type="text"/></label>
             <label>Year: <input min="0" max="{{$root.currentYear}}" ng-model="newmovie.year" type="number" /></label>
             <label>Rating: <input min="0" max="10" ng-model="newmovie.rating" type="number"/></label>
-            <label>Actors: <textarea rows="4" ng-model="newmovie.actors" type="text" /></label>
-            <label>Genre: <textarea rows="4" ng-model="newmovie.genres" type="text"/></label>
-            
+            <label>Actors: <textarea rows="4" ng-model="newmovie.actors" placeholder="comma separated list e.g. (Dennis Quaid,Daniel Day Lewis,Tony Stewart)"></textarea></label>
+            <label>Genre: <textarea rows="4" ng-model="newmovie.genres" placeholder="comma separated list e.g. (Action,Romance,Comedy)"></textarea></label>
+
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
