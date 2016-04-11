@@ -1,0 +1,18 @@
+<div>
+  <div class="topcontrols">
+  <div ng-click="addmovie(this)" class="crud">Add Movie <span class="glyphicon glyphicon-plus"></span></div>
+  <div class="search"><input ng-model="search" type="text" placeholder="search"/></div>
+</div>
+<div ng-show="movie.visible" class="movie tile" ng-repeat="movie in movies">
+  <div>
+    <div ng-click="editmovie(this)" class="crud">Edit <span class="glyphicon glyphicon-pencil"></span></div>
+    <div ng-click="destroymovie(this)" class="crud delete">Delete <span class="glyphicon glyphicon-trash"></span></div>
+  <h1>{{movie.title}}</h1>
+<p class="year">{{movie.year}}</p>
+<p class="rating">{{movie.rating}} / 10</p>
+<ul class="actors" ng-if="movie.actors.length > 0"><b>Actors</b><li ng-repeat="actor in movie.actors">{{actor}}</li></ul>
+
+<ul class="genres" ng-if="movie.genres.length > 0"><b>Genre</b><li ng-repeat="genre in movie.genres">{{genre}}</li></ul>
+
+</div>
+</div>

@@ -1,0 +1,15 @@
+<div class="modal-header">
+            <h3 class="modal-title">Add a Movie</h3>
+        </div>
+        <div class="modal-body">
+            <label>Title: <input ng-model="newmovie.title" type="text"/></label>
+            <label>Year: <input min="0" max="{{$root.currentYear}}" ng-model="newmovie.year" type="number" /></label>
+            <label>Rating: <input min="0" max="10" ng-model="newmovie.rating" type="number"/></label>
+            <label>Actors: <textarea rows="4" ng-model="newmovie.actors" type="text" /></label>
+            <label>Genre: <textarea rows="4" ng-model="newmovie.genres" type="text"/></label>
+            
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
